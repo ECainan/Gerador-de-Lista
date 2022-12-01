@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Ágora</title>
+</head>
+<body>
+    <p id="principal"></p>
+    <button onclick="geraLista()">Aperte Aqui</button>
+
+    <script>
+        // A lista de números será gerada de forma aleatória pela função "geraLista". Ao apertar o botão os números de 1 a 11 serão gerados de forma aleatória e organizados em um array.
+        function geraLista(){ 
+            jogadores = [];
+            for(i = 0; i < 12; i++){ // Expressão para preencher o array com os valores
+                function gerar(){
+                    let jogador = Math.round(Math.random() * 11); // Gerador de números aleatórios menores que 11
+                    if(jogadores.find(number => number == jogador)){ // Verifica se o número está presente no array, caso esteja, ele roda a função novamente
+                        return gerar();
+                    };
+                    return jogador;
+                };
+                const novaLista = gerar();
+
+                if(novaLista != 0){
+                    jogadores.push(novaLista);
+                };
+            };
+            var paragrafo = document.querySelector("#principal");
+            var lista = document.createTextNode(jogadores);
+            paragrafo.appendChild(lista);
+        };
+
+        
+    </script>
+</body>
+</html>
